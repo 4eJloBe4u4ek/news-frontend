@@ -182,7 +182,7 @@ export default function NewsDetail() {
                               <p className="text-red-600 text-sm mb-2">{editingError}</p>
                           )}
                           <textarea
-                              className="w-full border rounded p-2 mb-2"
+                              className="w-full border rounded p-2 mb-2 min-h-[4rem]"
                               rows={2}
                               value={editingText}
                               onChange={e => setEditingText(e.target.value)}
