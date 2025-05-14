@@ -1,4 +1,3 @@
-// src/router.jsx
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import RequireAuth from './components/RequireAuth'
 import Auth       from './pages/Auth'
@@ -13,14 +12,10 @@ import Profile    from './pages/ProfileEdit'
 import CreateNews from './pages/CreateNews'
 
 const router = createBrowserRouter([
-  // unauthenticated entry
   { path: '/auth',      element: <Auth /> },
-  // after login with need2fa → go here
   { path: '/2fa/setup', element: <RequireAuth><Setup2FA/></RequireAuth> },
-  // after scanning QR or coming from oauth redirect with need2fa → go here
   { path: '/2fa/verify', element: <Verify2FA/> },
 
-  // everything else is behind your normal auth guard
   {
     path: '/',
     element: <RequireAuth><App/></RequireAuth>,

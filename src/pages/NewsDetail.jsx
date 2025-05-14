@@ -143,8 +143,8 @@ export default function NewsDetail() {
         </button>
 
         <article>
-          <h2 className="text-2xl font-bold mb-2">{news.title}</h2>
-          <p className="text-gray-700">{news.text}</p>
+          <h2 className="text-2xl font-bold mb-2 break-words">{news.title}</h2>
+          <p className="text-gray-700 break-words">{news.text}</p>
         </article>
 
         <section>
@@ -156,7 +156,7 @@ export default function NewsDetail() {
                     <p className="text-red-600 text-sm mb-2">{commentError}</p>
                 )}
                 <textarea
-                    className="w-full border rounded p-2 mb-2"
+                    className="w-full border rounded p-2 mb-2 min-h-[4rem]"
                     rows={3}
                     placeholder="Add a comment..."
                     value={newComment}
@@ -207,13 +207,12 @@ export default function NewsDetail() {
                         </>
                     ) : (
                         <>
-                          <p className="mb-1">{c.text}</p>
-                          <p className="text-xs text-gray-500 mb-2">
-                            {new Date(c.time).toLocaleString()} — {c.author}
+                          <p className="mb-1 break-words">{c.text}</p>
+                          <p className="text-xs text-gray-500 mb-2 break-words">
+                            {new Date(c.time).toLocaleString()} — {c.authorName}
                           </p>
 
                           <div className="flex space-x-4 text-sm items-center">
-                            {/* ❤️ Лайк показываем всем залогиненным */}
                             {user && (
                                 <button
                                     onClick={() => toggleLike(c.id)}
@@ -238,8 +237,7 @@ export default function NewsDetail() {
                                 </button>
                             )}
 
-                            {/* Edit/Delete только автору */}
-                            {user?.username === c.author && (
+                            {user?.id === c.authorId && (
                                 <>
                                   <button
                                       onClick={() => {

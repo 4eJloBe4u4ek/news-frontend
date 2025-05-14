@@ -1,4 +1,3 @@
-// src/pages/RoleSelect.jsx
 import React, { useState, useContext } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
@@ -17,15 +16,12 @@ export default function RoleSelect() {
             setToken(token)
 
             if (need2faSetup) {
-                // ещё не было setup → показать QR
                 navigate('/2fa/setup', { replace: true })
             }
             else if (need2faVerify) {
-                // setup есть, но не верифицирован → ввести код
                 navigate('/2fa/verify', { replace: true })
             }
             else {
-                // 2fa полностью настроен
                 navigate('/', { replace: true })
             }
         } catch (e) {

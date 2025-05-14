@@ -7,14 +7,11 @@ export default function Setup2FA() {
     const nav = useNavigate()
 
     useEffect(() => {
-        // Сначала проверяем, нет ли уже секрета через /auth/me
         api.get('/auth/me')
             .then(({ data }) => {
                 if (data.totpSecret) {
-                    // Если секрет уже есть (но код не верифицирован) — не генерим заново
                     nav('/2fa/verify', { replace: true })
                 } else {
-                    // Иначе — генерим первый раз
                     return api.post('/auth/2fa/setup')
                 }
             })

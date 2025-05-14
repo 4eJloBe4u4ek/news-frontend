@@ -29,6 +29,22 @@ export default function Verify2FA() {
         }
     }
 
+    const handleKeyDown = (idx, e) => {
+        if (e.key === 'Backspace') {
+            e.preventDefault()
+            const newCode = [...code]
+
+            if (newCode[idx]) {
+                newCode[idx] = ''
+                setCode(newCode)
+            } else if (idx > 0) {
+                inputsRef.current[idx - 1]?.focus()
+                newCode[idx - 1] = ''
+                setCode(newCode)
+            }
+        }
+    }
+
     const submit = async fullCode => {
         setError(null)
         try {
@@ -57,6 +73,7 @@ export default function Verify2FA() {
                         maxLength={1}
                         value={digit}
                         onChange={e => handleChange(idx, e.target.value)}
+                        onKeyDown={e => handleKeyDown(idx, e)}
                         className="w-12 h-12 text-center text-xl border rounded"
                     />
                 ))}
